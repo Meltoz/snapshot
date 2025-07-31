@@ -1,8 +1,9 @@
 <template>
-  <div class="max-w-full mx-4 overflow-x-hidden">
+  <div class="max-w-full overflow-x-hidden">
+    <Header />
     <slot />
   </div>
-  <Footer />
 </template>
 <script setup lang="ts">
+import Header from '~/components/Header.vue';
 </script>

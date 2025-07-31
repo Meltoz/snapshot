@@ -8,13 +8,13 @@ definePageMeta({
 </script>
 
 <template>
-  <h1>INSTAX</h1>
-  <section class="relative  h-screen ">
-    <carousel />
-  </section>
-  <div class="pt-10">
-    <p>coucou les musulman moi je mange la glaces</p>
-  </div>
+  <main>
+      <carousel />
+    <div class="pt-10">
+      <p>on est en dessous du carousel</p>
+    </div>
+  </main>
+
 
 </template>
 
