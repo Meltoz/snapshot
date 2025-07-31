@@ -8,8 +8,12 @@ definePageMeta({
 </script>
 
 <template>
-  <div>
-    <h1 class="bg-red-500 text-white text-center">Je suis un texte blanc sur un font rouge</h1>
+  <h1>INSTAX</h1>
+  <section class="relative  h-screen ">
+    <carousel />
+  </section>
+  <div class="pt-10">
+    <p>coucou les musulman moi je mange la glaces</p>
   </div>
 
 </template>
