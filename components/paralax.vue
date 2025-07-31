@@ -6,7 +6,7 @@
         ref="parallaxImage"
         src="/images/parallax/arbres.avif"
         alt="Parallax"
-        class="absolute top-0 left-0 w-full object-contain"
+        class="absolute top-0 left-0 w-full h-[300%] object-cover"
       />
     </div>
 
