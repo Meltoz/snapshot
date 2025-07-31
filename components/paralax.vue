@@ -86,12 +86,13 @@ onMounted(() => {
     const totalWidth = Array.from(items).reduce((acc, el) => acc + el.clientWidth + 40, 0)
 
     gsap.to(sliderWrapper.value, {
-      x: `-=${totalWidth / 2}`,
-      duration: 55,
+      x: () => `-${totalWidth / 5}px`, // cible à atteindre
       ease: 'none',
-      repeat: -1,
-      modifiers: {
-        x: gsap.utils.unitize((x) => parseFloat(x) % (totalWidth / 2)),
+      scrollTrigger: {
+        trigger: sliderWrapper.value,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
       },
     })
   }
