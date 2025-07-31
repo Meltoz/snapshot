@@ -40,7 +40,7 @@ definePageMeta({
       year="2022"
       description="Le Fujifilm X-T5 est un boîtier hybride expert de la série X, qui revient à une ergonomie photographique plus classique. Compact et léger, il embarque pourtant un capteur APS-C haute résolution de 40 Mpx, idéal pour les amateurs de paysages, studio ou impressions grand format."
       citation="L'équilibre parfait entre puissance, légèreté et créativité pure"
-      img="/images/product/xt5.png"
+      img="/images/product/XT5.png"
       :instax="false"
     />
     <Product
