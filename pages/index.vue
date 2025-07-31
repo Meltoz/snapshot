@@ -17,6 +17,7 @@ definePageMeta({
   <main>
     <hero/>
     <discover class="w-full h-screen" />
+    <paralax />
   </main>
 
 
