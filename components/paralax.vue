@@ -4,7 +4,7 @@
     <div class="relative h-[35vh] overflow-hidden">
       <img
         ref="parallaxImage"
-        src="/images/parallax/arbres.png"
+        src="/images/parallax/arbres.avif"
         alt="Parallax"
         class="absolute top-0 left-0 w-full object-contain"
       />
