@@ -44,18 +44,6 @@ jobs:
           docker push ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{env.VERSION}}
           docker push ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:latest
 
-      - name: Merge release branch into master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-        run: |
-          git config --global user.email "make-release[bot]@users.noreply.github.com"
-          git config --global user.name "make-release[bot]"
-
-          git fetch origin
-          git checkout master
-          git reset --hard origin/${GITHUB_REF#refs/heads/}
-          git push --force origin master
-
       - name: Create tag on master branch
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
