@@ -1,7 +1,19 @@
 <template>
   <div ref="container" class="bg-black">
     <!-- Parallax Image -->
+
     <div class="relative h-[35vh] overflow-hidden">
+      <div class="absolute z-10 text-white text-7xl w-full">
+        <div class="flex justify-between font-playfair italic">
+          <p>Ergonomie</p>
+          <p>Performance</p>
+          <p>Unique</p>
+        </div>
+        <div class="flex justify-around font-kosugi w-full ms-14">
+          <p>Retro</p>
+          <p >Robustesse</p>
+        </div>
+      </div>
       <img
         ref="parallaxImage"
         src="/images/parallax/arbres.avif"
