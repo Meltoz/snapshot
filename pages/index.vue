@@ -1,18 +1,22 @@
 <script setup lang="ts">
 
 import transitionConfig from '~/helpers/transition-config';
+import Discover from '~/components/home/discover.vue';
+import Hero from '~/components/home/hero.vue';
+
+useHead({
+  title: 'Snapshot - Fujifilm'
+})
 
 definePageMeta({
   pageTransition: transitionConfig
-})
+});
 </script>
 
 <template>
   <main>
-      <carousel />
-    <div class="pt-10">
-      <p>on est en dessous du carousel</p>
-    </div>
+    <hero/>
+    <discover class="w-full h-screen" />
   </main>
 
 

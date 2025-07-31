@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue'
 import gsap from 'gsap'
 
 const slider = ref(null)
+const content = ref(null);
 const touchStartX = ref(0)
 const touchEndX = ref(0)
 
@@ -52,7 +53,6 @@ function prev() {
 }
 
 function animate() {
-  const content = slider.value.querySelectorAll('.content')
   content.forEach((el, i) => {
     if (i === 1) {
       gsap.fromTo(
@@ -80,12 +80,12 @@ function getItemStyle(index) {
     left: '0',
     opacity: 1,
   }
-
-  if (index === 2) style.left = '50%'
-  else if (index === 3) style.left = `calc(50% + ${baseLeft}px)`
-  else if (index === 4) style.left = `calc(50% + ${baseLeft * 2}px)`
+  const left = 70;
+  if (index === 2) style.left = `${left}%`
+  else if (index === 3) style.left = `calc(${left}% + ${baseLeft}px)`
+  else if (index === 4) style.left = `calc(${left}% + ${baseLeft * 2}px)`
   else if (index === 5) {
-    style.left = `calc(50% + ${baseLeft * 3}px)`
+    style.left = `calc(${left}% + ${baseLeft * 3}px)`
     style.opacity = 0
   }
 
@@ -129,11 +129,11 @@ onMounted(() => {
         :data-index="index"
       >
         <div
-          class="absolute content left-12 top-1/2  z-20 text-white max-w-[400px] opacity-0 hidden"
+          class="absolute top-1/2  z-20 text-white max-w-[400px] opacity-0"
           :class="{ 'block animate-show': index === 1 }"
-          ref=""
+          ref="content"
         >
-          <h2 class="text-xl uppercase font-black drop-shadow">"{{ item.title }}"</h2>
+          <h2 class="text-xl uppercase drop-shadow">"{{ item.title }}"</h2>
           <p class="my-4 text-sm leading-relaxed drop-shadow">
             {{ item.description }} coucou
           </p>

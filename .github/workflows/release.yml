@@ -1,4 +1,4 @@
-name: Make GuessNumberRelease
+name: Make Snapshot Release
 
 on:
   push:
