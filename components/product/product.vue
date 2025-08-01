@@ -1,6 +1,6 @@
 <template>
   <section class="mt-5 h-screen">
-    <p class="text-center text-2xl absolute w-full">[{{ year }}]</p>
+    <p class="text-center text-2xl absolute w-full font-kosugi">[{{ year }}]</p>
     <div class="flex justify-between font-playfair absolute">
       <div class="space-y-6 ml-4">
         <p class="text-7xl">{{ brand }}</p>

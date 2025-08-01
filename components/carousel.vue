@@ -112,13 +112,13 @@ watch(currentIndex, () => {
     <div class="flex items-center gap-2 absolute bottom-36 left-7/12 w-2/5  backdrop-blur-xs rounded-full px-2 ">
       <div class="flex items-baseline">
         <button
-          @click="next"
+          @click="prev"
           class="cursor-pointer "
         >
           <img src="/images/photographes/next.svg" class="size-12 pb-2"  />
         </button>
         <button
-          @click="prev"
+          @click="next"
           class="cursor-pointer"
         >
           <img src="/images/photographes/next.svg"  class="pb-2 size-12 rotate-180" />
