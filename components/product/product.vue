@@ -6,9 +6,9 @@
         <p class="text-7xl">{{ brand }}</p>
         <p class="text-6xl italic">{{ model }}</p>
         <div class="h-1 bg-red-500 w-1/12"></div>
-        <p class="w-3/12 font-kosugi text-justify text-xs">{{ description }}</p>
+        <p class="w-3/12 font-kosugi text-justify text-md">{{ description }}</p>
       </div>
-      <p class="text-[1.7rem] basis-7/12">“{{ citation }}”</p>
+      <p class="text-[1.6rem] basis-7/12">“{{ citation }}”</p>
     </div>
 
     <div ref="container" class="relative w-full mx-auto py-24">
@@ -40,7 +40,7 @@
       <!-- Tooltips -->
       <div v-for="(point, index) in points" :key="'tooltip-' + index">
         <div
-          class="absolute z-50 max-w-[300px] bg-white text-xs px-3 py-2 rounded font-kosugi transition-opacity duration-500"
+          class="absolute z-50 max-w-[300px] bg-white text-xs px-3 py-2 rounded font-kosugi transition-opacity duration-700"
           :class="hoveredPointIndex === index ? 'opacity-100' : 'opacity-0 pointer-events-none'"
           :style="{
       top: point.tooltipy + '%',
