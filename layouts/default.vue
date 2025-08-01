@@ -1,11 +1,9 @@
 <template>
-  <div class="max-w-full overflow-x-hidden">
-    <Header />
+  <div class="max-w-full">
+    <Header class="sticky top-0 z-50" />
     <slot />
-    <Footer />
   </div>
 </template>
 <script setup lang="ts">
 import Header from '~/components/layout/Header.vue';
-import Footer from '~/components/layout/footer.vue';
 </script>

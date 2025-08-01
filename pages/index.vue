@@ -4,6 +4,7 @@ import Discover from '~/components/home/discover.vue';
 import Hero from '~/components/home/hero.vue';
 import Product from '~/components/product/product.vue';
 import type { ProductProps } from '~/models/product';
+import Footer from '~/components/layout/footer.vue';
 
 useHead({
   title: 'Snapshot - Fujifilm',
@@ -196,6 +197,7 @@ const products: ProductProps[] = [
     <Product v-for="product in products" v-bind="product" class="screen-section h-screen" />
     <discover class="w-full h-screen" />
     <paralax />
+    <Footer />
   </main>
 </template>
 
