@@ -1,45 +1,22 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import gsap from 'gsap'
+
+const props = defineProps<{
+  lastName: string;
+  firstName: string;
+  color: "black" | "white";
+  cards: Card[];
+}>();
+
 
 const slider = ref(null)
 const content = ref(null);
 const touchStartX = ref(0)
 const touchEndX = ref(0)
 
-const items = ref([
-  {
-    title: 'Lossless Youths',
-    img: 'https://cdn.mos.cms.futurecdn.net/dP3N4qnEZ4tCTCLq59iysd.jpg',
-    description: 'Lorem ipsum dolor sit amet...',
-  },
-  {
-    title: 'Estrange Bond',
-    img: 'https://i.redd.it/tc0aqpv92pn21.jpg',
-    description: 'Lorem ipsum dolor sit amet...',
-  },
-  {
-    title: 'The Gate Keeper',
-    img: 'https://wharferj.files.wordpress.com/2015/11/bio_north.jpg',
-    description: 'Lorem ipsum dolor sit amet...',
-  },
-  {
-    title: 'Last Trace Of Us',
-    img: 'https://images7.alphacoders.com/878/878663.jpg',
-    description: 'Lorem ipsum dolor sit amet...',
-  },
-  {
-    title: 'Urban Decay',
-    img: 'https://theawesomer.com/photos/2017/07/simon_stalenhag_the_electric_state_6.jpg',
-    description: 'Lorem ipsum dolor sit amet...',
-  },
-  {
-    title: 'The Migration',
-    img: 'https://da.se/app/uploads/2015/09/simon-december1994.jpg',
-    description: 'Lorem ipsum dolor sit amet...',
-  },
-])
 
+const items = ref([...props.cards]);
 function next() {
   const first = items.value.shift()
   items.value.push(first)
@@ -120,7 +97,7 @@ onMounted(() => {
     <ul ref="slider" class="slider">
       <li
         v-for="(item, index) in items"
-        :key="item.title"
+        :key="index"
         class="absolute top-1/2 z-10 rounded-2xl bg-center bg-cover shadow-[inset_0_20px_30px_rgba(255,255,255,0.3)] transition-all duration-[750ms]"
         :style="getItemStyle(index)"
         :class="{
@@ -133,13 +110,9 @@ onMounted(() => {
           :class="{ 'block animate-show': index === 1 }"
           ref="content"
         >
-          <h2 class="text-xl uppercase drop-shadow">"{{ item.title }}"</h2>
           <p class="my-4 text-sm leading-relaxed drop-shadow">
-            {{ item.description }} coucou
+            {{ item.description }}
           </p>
-          <button class="bg-white/10 border-2 border-white px-4 py-3 rounded cursor-pointer text-white">
-            Read More
-          </button>
         </div>
       </li>
     </ul>

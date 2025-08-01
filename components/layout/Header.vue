@@ -8,7 +8,7 @@
       <ul class="flex gap-40 text-2xl font-extralight- tracking-widest">
         <li>A propos</li>
         <li>Articles</li>
-        <li><NuxtLink to="photographes">Photographes</NuxtLink></li>
+        <li><NuxtLink to="/photographes">Photographes</NuxtLink></li>
       </ul>
     </nav>
   </header>
