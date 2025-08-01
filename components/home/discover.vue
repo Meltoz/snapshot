@@ -6,7 +6,8 @@
     @mousemove="onMove"
     ref="container"
   >
-    <h2 class="text-[7rem] px-10 py-32 font-playfair italic">Découvrir</h2>
+    <h2 class="text-[7rem] px-5 pt-10 font-playfair italic">Découvrir</h2>
+    <h3 class="text-[4rem] px-28 -pt-16 font-playfair italic">Nos photographes</h3>
     <!--    grille-->
     <div class="absolute top-1/3 left-0 w-full h-px bg-white"></div>
     <div class="absolute top-2/3 left-0 w-full h-px bg-white"></div>
@@ -26,6 +27,7 @@
     >
       <img :src="image.src" alt="" class="w-full h-full object-cover" />
     </div>
+    <NuxtLink to="photographes" class="absolute bottom-20 right-40 text-3xl border border-white px-16 py-2 font-kosugi hover:bg-white hover:text-black hover:border-black transition-colors duration-500 z-50">Voir plus</NuxtLink>
   </div>
 </template>
 

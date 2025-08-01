@@ -1,5 +1,13 @@
 <script setup lang="ts">
+import transitionConfig from '~/helpers/transition-config';
 
+useHead({
+  title: 'Snapshot - Fujifilm',
+});
+
+definePageMeta({
+  pageTransition: transitionConfig,
+});
 </script>
 
 <template>
