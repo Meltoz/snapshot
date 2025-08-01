@@ -1,147 +1,165 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import gsap from 'gsap'
+import type { Card } from '~/models/card'
+import { last } from '@antfu/utils';
 
 const props = defineProps<{
   lastName: string;
   firstName: string;
-  color: "black" | "white";
-  cards: Card[];
-}>();
+  cards: Card[]
+}>()
 
+const currentIndex = ref(0)
+const total = computed(() => props.cards.length)
 
-const slider = ref(null)
-const content = ref(null);
-const touchStartX = ref(0)
-const touchEndX = ref(0)
+// Vignettes visibles
+const visibleThumbnails = computed(() => {
+  const start = currentIndex.value + 1
+  return Array.from({ length: 3 }, (_, i) => {
+    const index = (start + i) % total.value
+    return props.cards[index]
+  })
+})
 
-
-const items = ref([...props.cards]);
 function next() {
-  const first = items.value.shift()
-  items.value.push(first)
-  animate()
+  direction.value = 'next'
+  currentIndex.value = (currentIndex.value + 1) % total.value
 }
 
 function prev() {
-  const last = items.value.pop()
-  items.value.unshift(last)
-  animate()
+  direction.value = 'prev'
+  currentIndex.value = (currentIndex.value - 1 + total.value) % total.value
 }
 
-function animate() {
-  content.forEach((el, i) => {
-    if (i === 1) {
-      gsap.fromTo(
-        el,
-        { opacity: 0, filter: 'blur(5px)', y: 75 },
-        {
-          opacity: 1,
-          filter: 'blur(0px)',
-          y: 0,
-          duration: 0.75,
-          delay: 0.3,
-          ease: 'power2.out',
-        }
-      )
-    }
-  })
+// Barre de progression
+const progress = computed(() => ((currentIndex.value + 1) / total.value) * 100)
+
+// Animation
+const activeImageRef = ref<HTMLElement | null>(null)
+const thumbnailsWrapperRef = ref<HTMLElement | null>(null)
+const direction = ref<'next' | 'prev'>('next')
+
+function animateMainImage() {
+  if (!activeImageRef.value) return
+
+  const xFrom = direction.value === 'next' ? 200 : -200
+  gsap.fromTo(
+    activeImageRef.value,
+    { x: xFrom, opacity: 0 },
+    { x: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }
+  )
 }
 
-function getItemStyle(index) {
-  const baseLeft = 220
-  let style = {
-    backgroundImage: `url('${items.value[index].img}')`,
-    width: '200px',
-    height: '300px',
-    left: '0',
-    opacity: 1,
-  }
-  const left = 70;
-  if (index === 2) style.left = `${left}%`
-  else if (index === 3) style.left = `calc(${left}% + ${baseLeft}px)`
-  else if (index === 4) style.left = `calc(${left}% + ${baseLeft * 2}px)`
-  else if (index === 5) {
-    style.left = `calc(${left}% + ${baseLeft * 3}px)`
-    style.opacity = 0
-  }
+function animateThumbnails() {
+  if (!thumbnailsWrapperRef.value) return
 
-  return style
-}
-
-// Gestion du swipe
-function handleTouchStart(e) {
-  touchStartX.value = e.changedTouches[0].screenX
-}
-
-function handleTouchEnd(e) {
-  touchEndX.value = e.changedTouches[0].screenX
-  const deltaX = touchEndX.value - touchStartX.value
-
-  if (Math.abs(deltaX) > 50) {
-    if (deltaX < 0) next()
-    else prev()
-  }
+  const xFrom = direction.value === 'next' ? 100 : -100
+  gsap.fromTo(
+    thumbnailsWrapperRef.value,
+    { x: xFrom, opacity: 0 },
+    { x: 0, opacity: 1, duration: 0.4, ease: 'power2.out' }
+  )
 }
 
 onMounted(() => {
-  if (slider.value) {
-    slider.value.addEventListener('touchstart', handleTouchStart, { passive: true })
-    slider.value.addEventListener('touchend', handleTouchEnd, { passive: true })
-  }
+  animateMainImage()
+  animateThumbnails()
+})
+
+watch(currentIndex, () => {
+  animateMainImage()
+  animateThumbnails()
 })
 </script>
 
 <template>
-  <main class="relative w-full h-[90vh] shadow-lg overflow-hidden">
-    <ul ref="slider" class="slider">
-      <li
-        v-for="(item, index) in items"
-        :key="index"
-        class="absolute top-1/2 z-10 rounded-2xl bg-center bg-cover shadow-[inset_0_20px_30px_rgba(255,255,255,0.3)] transition-all duration-[750ms]"
-        :style="getItemStyle(index)"
-        :class="{
-          '!w-full !h-full !top-0 !rounded-none shadow-none opacity-100': index === 1
-        }"
-        :data-index="index"
+  <div class="relative w-full h-[91vh] bg-black text-white overflow-hidden">
+    <!-- Image principale -->
+    <div class="w-full h-full flex items-center justify-center relative">
+      <img
+        :src="props.cards[currentIndex].img"
+        alt="Image principale"
+        class="object-cover w-full h-full absolute top-0 left-0"
+        ref="activeImageRef"
+      />
+    </div>
+
+    <div class="absolute top-1/2 -translate-y-1/2 left-20 w-1/4 h-4/12 bg-black/50 p-5 corner-frame">
+      <p class="font-kosugi px-2">{{cards[currentIndex].description}}</p>
+      <h2 class="text-8xl font-playfair italic">{{firstName}}</h2>
+      <h3 class="text-8xl font-playfair uppercase contour text-transparent">{{lastName}}</h3>
+    </div>
+
+    <div
+      ref="thumbnailsWrapperRef"
+      class="absolute bottom-72 right-16 flex gap-2 z-20"
+    >
+      <div
+        v-for="(thumb, i) in visibleThumbnails"
+        :key="i"
+        class="w-60 h-64 rounded overflow-hidden shadow-md border border-white/30 bg-white "
       >
-        <div
-          class="absolute top-1/2  z-20 text-white max-w-[400px] opacity-0"
-          :class="{ 'block animate-show': index === 1 }"
-          ref="content"
+          <img
+            :src="thumb.img"
+            alt="thumbnail"
+            class="px-2 mt-5 h-4/6 w-full object-fill rounded-xl"
+          />
+      </div>
+    </div>
+
+    <!-- controls -->
+    <div class="flex items-center gap-2 absolute bottom-36 left-7/12 w-2/5  backdrop-blur-xs rounded-full px-2 ">
+      <div class="flex items-baseline">
+        <button
+          @click="next"
+          class="cursor-pointer "
         >
-          <p class="my-4 text-sm leading-relaxed drop-shadow">
-            {{ item.description }}
-          </p>
-        </div>
-      </li>
-    </ul>
-
-    <nav class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 select-none">
-      <button @click="prev" class="bg-white/50 text-black/70 border-2 border-black/60 mx-1 p-3 rounded-full hover:bg-white/30 cursor-pointer">
-        <ion-icon name="arrow-back-outline"></ion-icon>
-      </button>
-      <button @click="next" class="bg-white/50 text-black/70 border-2 border-black/60 mx-1 p-3 rounded-full hover:bg-white/30 cursor-pointer">
-        <ion-icon name="arrow-forward-outline"></ion-icon>
-      </button>
-    </nav>
-  </main>
+          <img src="/images/photographes/next.svg" class="size-12 pb-2"  />
+        </button>
+        <button
+          @click="prev"
+          class="cursor-pointer"
+        >
+          <img src="/images/photographes/next.svg"  class="pb-2 size-12 rotate-180" />
+        </button>
+      </div>
+      <div class="w-full space-y-1">
+        <div
+          class="h-0.5 bg-red-500 transition-all duration-300"
+          :style="{ width: progress + '%' }"
+        ></div>
+        <div class="h-0.5 bg-white grow"> </div>
+      </div>
+      <p class="font-playfair italic text-7xl pb-6">0{{currentIndex +1}}</p>
+    </div>
+  </div>
 </template>
+<style>
+.contour{
+  color: transparent;
+  -webkit-text-stroke: 1px white;
+}.corner-frame::before,
+ .corner-frame::after {
+   content: "";
+   position: absolute;
+   width: 30px;
+   height: 30px;
+   border: 2px solid white;
+ }
 
-<style scoped>
-@keyframes show {
-  0% {
-    filter: blur(5px);
-    transform: translateY(75px);
-    opacity: 0;
-  }
-  100% {
-    filter: blur(0px);
-    transform: translateY(0);
-    opacity: 1;
-  }
+.corner-frame::before {
+  top: -15px;
+  left: -15px;
+  border-bottom: none;
+  border-right: none;
 }
-.animate-show {
-  animation: show 0.75s ease-in-out 0.3s forwards;
+
+.corner-frame::after {
+  bottom: -15px;
+  right: -15px;
+  border-top: none;
+  border-left: none;
 }
+
 </style>
