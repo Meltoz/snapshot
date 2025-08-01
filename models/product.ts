@@ -6,7 +6,7 @@ export interface ProductProps {
   year: string;
   citation: string;
   instax: boolean;
-  points: Point[]
+  points: Point[];
 }
 
 export interface Point {
