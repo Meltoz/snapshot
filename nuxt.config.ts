@@ -4,7 +4,7 @@ import type { NuxtPage } from '@nuxt/schema';
 export default defineNuxtConfig({
   ssr: false,
   build: {
-    transpile: ['three', 'gsap'],
+    transpile: ['lenis', 'gsap'],
   },
   plugins: [
     { src: '~/plugins/gsap.ts', mode: 'client', ssr: false },

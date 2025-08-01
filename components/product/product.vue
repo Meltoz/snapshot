@@ -8,17 +8,11 @@
         <div class="h-1 bg-red-500 w-1/12"></div>
         <p class="w-3/12 font-kosugi text-justify text-xs">{{ description }}</p>
       </div>
-      <p class="text-3xl basis-5/12">
-        “{{ citation }}”
-      </p>
+      <p class="text-[1.7rem] basis-7/12">“{{ citation }}”</p>
     </div>
 
-    <div ref="container" class="relative w-full mx-auto py-14">
-      <img
-        :src="img"
-        alt="Image interactive"
-        class="w-1/2 mx-auto h-auto object-cover"
-      />
+    <div ref="container" class="relative w-full mx-auto py-24">
+      <img :src="img" alt="Image interactive" class="w-1/2 mx-auto h-auto object-cover" />
 
       <!-- Points -->
       <div
@@ -30,71 +24,48 @@
           left: point.x + '%',
           transform: 'translate(-50%, -50%)',
         }"
-        ref="el => point.pointEl = el"
+        @mouseenter="hoveredPointIndex = index"
+        @mouseleave="hoveredPointIndex = null"
       >
-        <div class="w-5 h-5 bg-white rounded-full border-2 border-black"></div>
+        <!-- Cercle externe -->
+        <div class="relative w-8 h-8 cursor-pointer">
+          <!-- Halo -->
+          <div class="absolute inset-0 rounded-full border border-black animate-ping"></div>
+
+          <!-- Point central -->
+          <div class="absolute top-1/2 left-1/2 w-5 h-5 bg-white rounded-full border-2 border-black transform -translate-x-1/2 -translate-y-1/2 z-10"></div>
+        </div>
       </div>
 
-      <!-- Tooltips (séparés des points) -->
-      <div
-        v-for="(point, index) in points"
-        :key="'tooltip-' + index"
-        class="absolute z-50 max-w-[300px] bg-white text-xs px-3 py-1 space-y-5 font-kosugi"
-        :style="{
-          top: point.tooltipy + '%',
-          left: point.tooltipx + '%',
-          transform: 'translate(-50%, -50%)',
-        }"
-        ref="el => point.tooltipEl = el"
-      >
-        <h3 class="text-2xl">{{ point.title }}</h3>
-        <p class="text-justify">{{ point.text }}</p>
+      <!-- Tooltips -->
+      <div v-for="(point, index) in points" :key="'tooltip-' + index">
+        <div
+          class="absolute z-50 max-w-[300px] bg-white text-xs px-3 py-2 rounded font-kosugi transition-opacity duration-500"
+          :class="hoveredPointIndex === index ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+          :style="{
+      top: point.tooltipy + '%',
+      left: point.tooltipx + '%',
+      transform: 'translate(-50%, -50%)',
+    }"
+        >
+          <h3 class="text-2xl mb-2">{{ point.title }}</h3>
+          <p class="text-justify">{{ point.text }}</p>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue';
-import type { Product, Point } from '~/models/product';
+import { ref, onMounted } from 'vue';
+import type { ProductProps } from '~/models/product';
 
-const props = defineProps<Product>();
+const props = defineProps<ProductProps>();
 
 const container = ref<HTMLElement | null>(null);
 const containerWidth = ref(0);
 const containerHeight = ref(0);
-
-
-
-const points = reactive<Point[]>([
-  {
-    x: 41,
-    y: 50,
-    tooltipx: 25,
-    tooltipy: 70,
-    title: 'Écran LCD caché',
-    text: 'L’écran principal est replié vers l’intérieur, comme un dos d’appareil argentique. Tu n’y accèdes que si tu l’ouvres. À la place, un petit écran secondaire affiche la simulation de film utilisée. C’est un design pensé pour vivre la photo sans distraction.',
-    show: false,
-  },
-  {
-    x: 67,
-    y: 26,
-    tooltipx: 80,
-    tooltipy: 20,
-    title: 'Viseur hybride (optique + électonique)',
-    text: 'C’est l’un des rares appareils à offrir le choix entre un viseur optique clair et un viseur électronique haute résolution. Tu peux ainsi alterner entre une vision classique sans latence et une prévisualisation en temps réel de ton exposition.',
-    show: false,
-  },
-  {
-    x: 74,
-    y: 75,
-    tooltipx: 85,
-    tooltipy: 60,
-    title: 'Viseur hybride (optique + électonique)',
-    text: 'C’est l’un des rares appareils à offrir le choix entre un viseur optique clair et un viseur électronique haute résolution. Tu peux ainsi alterner entre une vision classique sans latence et une prévisualisation en temps réel de ton exposition.',
-    show: false,
-  },
-]);
+const hoveredPointIndex = ref<number | null>(null);
 
 function updateContainerSize() {
   if (container.value) {

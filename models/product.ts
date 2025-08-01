@@ -1,4 +1,4 @@
-export interface Product {
+export interface ProductProps {
   brand: string;
   model: string;
   description: string;
@@ -6,6 +6,7 @@ export interface Product {
   year: string;
   citation: string;
   instax: boolean;
+  points: Point[]
 }
 
 export interface Point {
@@ -15,7 +16,7 @@ export interface Point {
   tooltipy: number;
   title: string;
   text: string;
-  show: boolean;
+  show?: boolean;
   pointEl?: HTMLElement | null;
   tooltipEl?: HTMLElement | null;
   lineRef?: SVGLineElement | null;
