@@ -1,7 +1,7 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
-import {TextPlugin} from 'gsap/TextPlugin';
+import { TextPlugin } from 'gsap/TextPlugin';
 import { CustomEase } from 'gsap/CustomEase';
 import { defineNuxtPlugin } from 'nuxt/app';
 
