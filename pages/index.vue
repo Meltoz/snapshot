@@ -2,6 +2,7 @@
 import transitionConfig from '~/helpers/transition-config';
 import Discover from '~/components/home/discover.vue';
 import Hero from '~/components/home/hero.vue';
+import Paralax from '~/components/home/paralax.vue';
 import Product from '~/components/product/product.vue';
 import type { ProductProps } from '~/models/product';
 import Footer from '~/components/layout/footer.vue';
@@ -21,16 +22,16 @@ const products: ProductProps[] = [
     instax: false,
     points: [
       {
-        x: 41,
+        x: 42,
         y: 50,
-        tooltipx: 25,
+        tooltipx: 30,
         tooltipy: 70,
         title: 'Écran LCD caché',
         text: 'L’écran principal est replié vers l’intérieur, comme un dos d’appareil argentique. Tu n’y accèdes que si tu l’ouvres. À la place, un petit écran secondaire affiche la simulation de film utilisée. C’est un design pensé pour vivre la photo sans distraction.',
       },
       {
-        x: 67,
-        y: 28,
+        x: 60,
+        y: 32,
         tooltipx: 85,
         tooltipy: 28,
         title: 'Viseur hybride (optique + électonique)',
@@ -38,7 +39,7 @@ const products: ProductProps[] = [
       },
       {
         x: 74,
-        y: 75,
+        y: 60,
         tooltipx: 85,
         tooltipy: 60,
         title: 'Boîtier en titane',
@@ -64,10 +65,10 @@ const products: ProductProps[] = [
         text: 'Contrairement aux écrans totalement articulés, celui du X-T5 s’ouvre sur 3 axes, ce qui est plus pratique pour la photo en mode paysage ou portrait, tout en restant discret. Parfait pour la street photo ou les prises au ras du sol.',
       },
       {
-        x: 67,
-        y: 16,
-        tooltipx: 84,
-        tooltipy: 20,
+        x: 63,
+        y: 25,
+        tooltipx: 85,
+        tooltipy: 30,
         title: 'Capteur X-Trans CMOS 5 HR de 40 Mpx',
         text: 'Ce capteur APS-C haute résolution offre un niveau de détail exceptionnel, idéal pour l’impression grand format ou le recadrage sans perte. Il conserve la structure X-Trans qui améliore la netteté et la restitution des couleurs',
       },
@@ -125,25 +126,25 @@ const products: ProductProps[] = [
     instax: true,
     points: [
       {
-        x: 35,
+        x: 40,
         y: 55,
         tooltipx: 20,
-        tooltipy: 70,
+        tooltipy: 75,
         title: '6 effets de lumière intégrés',
         text: 'L’Instax Mini 99 est doté d’un cadran de sélection physique permettant d’ajouter des effets de lumière colorée (rose, vert, bleu, sépia, etc.) au flash, directement à la prise de vue. Ces effets donnent une ambiance unique et créative à chaque photo, sans retouche.',
       },
       {
         x: 60,
-        y: 28,
+        y: 40,
         tooltipx: 75,
-        tooltipy: 28,
+        tooltipy: 45,
         title: 'Format instax Mini et design rétro professionnel',
         text: 'Toujours compatible avec le format Instax Mini (86 x 54 mm), le Mini 99 se distingue par son look noir mat texturé, des molettes mécaniques, et un style proche d’un appareil photo argentique. Il s’adresse aux passionnés qui veulent une expérience photographique plus "pro" dans l’univers Instax.',
       },
       {
         x: 51,
         y: 66,
-        tooltipx: 65,
+        tooltipx: 72,
         tooltipy: 70,
         title: 'Viseur hybride (optique + électonique)',
         text: 'C’est l’un des rares appareils à offrir le choix entre un viseur optique clair et un viseur électronique haute résolution. Tu peux ainsi alterner entre une vision classique sans latence et une prévisualisation en temps réel de ton exposition.',
@@ -159,23 +160,23 @@ const products: ProductProps[] = [
     instax: true,
     points: [
       {
-        x: 35,
-        y: 75,
+        x: 38,
+        y: 65,
         tooltipx: 20,
         tooltipy: 75,
         title: 'Format Instax Wide',
         text: 'L’Instax Wide imprime des images plus grandes (108 x 86 mm), idéales pour les photos de groupe, les paysages ou les albums scrapbooking. Ce format donne plus de place à la composition et au détail.',
       },
       {
-        x: 63,
-        y: 22,
-        tooltipx: 80,
-        tooltipy: 30,
+        x: 60,
+        y: 32,
+        tooltipx: 82,
+        tooltipy: 35,
         title: 'Filtre numériques et effets d’objectifs',
         text: 'Comme sur le Mini Evo, l’appareil proposerait plusieurs filtres numériques (noir et blanc, rétro, sépia, etc.) combinés à des effets "objectifs" (flou, vignette, miroir) pour une touche créative avant impression.',
       },
       {
-        x: 58,
+        x: 53,
         y: 50,
         tooltipx: 75,
         tooltipy: 65,

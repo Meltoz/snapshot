@@ -6,13 +6,13 @@
         <p class="text-7xl">{{ brand }}</p>
         <p class="text-6xl italic">{{ model }}</p>
         <div class="h-1 bg-red-500 w-4/12 md:w-1/12"></div>
-        <p class="pr-5 md:w-3/12 font-kosugi text-justify text-md">{{ description }}</p>
+        <p class="pr-5 md:w-4/12 font-kosugi text-justify text-md">{{ description }}</p>
       </div>
       <p class="text-[1.6rem] basis-7/12 md:block hidden">“{{ citation }}”</p>
     </div>
 
-    <div ref="container" class="static md:relative w-full mx-auto py-5  md:py-24">
-      <img :src="img" alt="Image interactive" class="md:w-1/2 mx-auto h-96 xl:h-auto object-cover" />
+    <div ref="container" class="static md:relative w-full mx-auto py-5  md:py-56">
+      <img :src="img" alt="Image interactive" class="w-10/12 md:w-6/12 mx-auto h-96  xl:h-auto object-contain md:object-cover" />
 
       <!-- Points -->
       <div
@@ -40,7 +40,7 @@
       <!-- Tooltips -->
       <div v-for="(point, index) in points" :key="'tooltip-' + index">
         <div
-          class="absolute z-50 max-w-[300px] bg-white text-xs px-3 py-2 rounded font-kosugi transition-opacity duration-700"
+          class="absolute z-40 max-w-[300px] bg-white px-3 py-2 rounded font-kosugi transition-opacity duration-700"
           :class="hoveredPointIndex === index ? 'opacity-100' : 'opacity-0 pointer-events-none'"
           :style="{
       top: point.tooltipy + '%',
@@ -49,7 +49,7 @@
     }"
         >
           <h3 class="text-2xl mb-2">{{ point.title }}</h3>
-          <p class="text-justify">{{ point.text }}</p>
+          <p class="text-justify text-base">{{ point.text }}</p>
         </div>
       </div>
     </div>

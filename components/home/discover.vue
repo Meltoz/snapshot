@@ -1,6 +1,7 @@
 <template>
+  <section>
   <div
-    class="static xl:relative w-full h-full overflow-hidden bg-black text-white"
+    class="hidden md:block relative w-full h-full overflow-hidden bg-black text-white"
     @mouseenter="onEnter"
     @mouseleave="onLeave"
     @mousemove="onMove"
@@ -28,7 +29,12 @@
     >
       <img :src="image.src" alt="" class="w-full h-full object-cover" />
     </div>
-    <NuxtLink to="photographes" class="static md:absolute text-center w-full md:w-fit mx-4 bottom-20 md:right-40 text-3xl border border-white md:px-16 py-2 font-kosugi hover:bg-white hover:text-black hover:border-black transition-colors duration-500 z-50">Voir plus</NuxtLink>
+    <div class="absolute bottom-10 right-20 z-50 my-5 mx-4">
+      <layout-button href="/photographes" color="black">
+        Voir plus
+      </layout-button>
+    </div>
+
     <!-- Overlay : Image agrandie -->
     <div
       v-if="showImage"
@@ -42,18 +48,25 @@
       />
     </div>
   </div>
+    <div class=" block md:hidden bg-black text-white space-y-4 py-10">
+      <h2 class="text-5xl md:text-[7rem] px-5  font-playfair italic">Découvrir</h2>
+      <h3 class="text-3xl md:text-[4rem] px-20 -pt-16 font-playfair italic">Nos photographes</h3>
+      <p class="border border-white text-center py-2 mx-4"><NuxtLink to="/photographes">Voir plus</NuxtLink></p>
+    </div>
+  </section>
+
 </template>
 
 <script setup>
-import { ref, watch, onMounted, nextTick } from 'vue'
-import { gsap } from 'gsap'
+import { ref, watch, onMounted, nextTick } from 'vue';
+import { gsap } from 'gsap';
 
-const container = ref(null)
-const isActive = ref(false)
-const lastMousePos = ref({ x: 0, y: 0 })
+const container = ref(null);
+const isActive = ref(false);
+const lastMousePos = ref({ x: 0, y: 0 });
 
-const images = ref([])
-let imageIndex = 0
+const images = ref([]);
+let imageIndex = 0;
 const allImageSources = [
   '/images/photographes/tatuso/img1.png',
   '/images/photographes/tatuso/img2.png',
@@ -66,60 +79,60 @@ const allImageSources = [
   '/images/photographes/walter/img3.jpg',
   '/images/photographes/walter/img4.png',
   '/images/photographes/walter/img5.png',
-  '/images/photographes/walter/img6.png'
-]
+  '/images/photographes/walter/img6.png',
+];
 
-let lastImageTime = 0
-const delayMs = 75
+let lastImageTime = 0;
+const delayMs = 100;
 
-const selectedImage = ref(null)
-const showImage = ref(false)
-const fullImageRef = ref(null)
+const selectedImage = ref(null);
+const showImage = ref(false);
+const fullImageRef = ref(null);
 
 function onEnter() {
-  if (!showImage.value) isActive.value = true
+  if (!showImage.value) isActive.value = true;
 }
 
 function onLeave() {
-  isActive.value = false
+  isActive.value = false;
 }
 
 function onMove(e) {
-  if (!isActive.value || !container.value || showImage.value) return
+  if (!isActive.value || !container.value || showImage.value) return;
 
-  const now = Date.now()
-  if (now - lastImageTime < delayMs) return
+  const now = Date.now();
+  if (now - lastImageTime < delayMs) return;
 
-  const bounds = container.value.getBoundingClientRect()
-  const x = e.clientX - bounds.left - 48
-  const y = e.clientY - bounds.top - 48
+  const bounds = container.value.getBoundingClientRect();
+  const x = e.clientX - bounds.left - 48;
+  const y = e.clientY - bounds.top - 48;
 
-  const dx = x - lastMousePos.value.x
-  const dy = y - lastMousePos.value.y
-  const distance = Math.sqrt(dx * dx + dy * dy)
-  if (distance < 4) return
+  const dx = x - lastMousePos.value.x;
+  const dy = y - lastMousePos.value.y;
+  const distance = Math.sqrt(dx * dx + dy * dy);
+  if (distance < 4) return;
 
   images.value.push({
     x,
     y,
-    src: allImageSources[imageIndex % allImageSources.length]
-  })
+    src: allImageSources[imageIndex % allImageSources.length],
+  });
 
-  lastMousePos.value = { x, y }
-  lastImageTime = now
-  imageIndex++
+  lastMousePos.value = { x, y };
+  lastImageTime = now;
+  imageIndex++;
 
-  const maxImages = 5
+  const maxImages = 5;
   if (images.value.length > maxImages) {
-    images.value.shift()
+    images.value.shift();
   }
 }
 
 function onClick() {
-  if (showImage.value || images.value.length === 0) return
+  if (showImage.value || images.value.length === 0) return;
 
-  selectedImage.value = images.value[images.value.length - 1]
-  showImage.value = true
+  selectedImage.value = images.value[images.value.length - 1];
+  showImage.value = true;
 }
 
 function closeImage() {
@@ -129,15 +142,15 @@ function closeImage() {
     duration: 0.3,
     ease: 'power2.in',
     onComplete: () => {
-      showImage.value = false
-    }
-  })
+      showImage.value = false;
+    },
+  });
 }
 
 // Animation GSAP sur affichage
 watch(showImage, async (val) => {
   if (val) {
-    await nextTick()
+    await nextTick();
     gsap.fromTo(
       fullImageRef.value,
       { scale: 0.7, opacity: 0 },
@@ -145,9 +158,9 @@ watch(showImage, async (val) => {
         scale: 1,
         opacity: 1,
         duration: 0.5,
-        ease: 'power2.out'
-      }
-    )
+        ease: 'power2.out',
+      },
+    );
   }
-})
+});
 </script>

@@ -145,7 +145,7 @@ watch(currentIndex, () => {
       <img
         :src="props.cards[currentIndex].img"
         alt="Image principale"
-        class="md:object-cover object-fill w-full h-full absolute top-0 left-0"
+        class="object-cover w-full h-full absolute top-0 left-0"
         ref="activeImageRef"
       />
     </div>
@@ -165,7 +165,7 @@ watch(currentIndex, () => {
       <div
         v-for="(thumb, i) in visibleThumbnails"
         :key="i"
-        class="w-60 h-64 rounded overflow-hidden shadow-md border border-white/30 bg-white "
+        class="w-60 h-64 rounded overflow-hidden shadow-md border border-white/30 bg-white"
       >
           <img
             :src="thumb.img"

@@ -17,7 +17,9 @@ definePageMeta({
           <h3 class="text-5xl md:text-6xl font-playfair"><span class="italic">Tatsuo</span> SUZUKI</h3>
           <p class="font-kosugi text-justify">Tatsuo Suzuki est un photographe de rue japonais connu pour ses images percutantes en noir et blanc, capturant l’intensité et l'énergie brute de Tokyo. </p>
           <div class="md:flex hidden justify-end w-full">
-            <NuxtLink to="photographes/tatsuo-suzuki" class="bg-white hover:bg-white/80 px-16 py-2 text-black border border-black transition-colors duration-300">Voir les photos</NuxtLink>
+            <layout-button href="/photographes/tatsuo-suzuki" color="white">
+              Voir les photos
+            </layout-button>
           </div>
         </div>
         <img src="/images/photographes/tatsuo.jpg"  class="mx-4 md:mx-0"/>
@@ -31,7 +33,9 @@ definePageMeta({
 
           <p class="font-kosugi text-justify">Walter Iooss Jr. est un photographe américain renommé pour son travail dans le domaine du sport. Il a photographié de nombreuses icônes telles que Michael Jordan, Muhammad Ali ou Serena Williams.</p>
           <div class="md:block hidden">
-            <NuxtLink to="photographes/walter-ioos" class="bg-white hover:bg-white/80 px-16 py-2 text-black border border-black transition-colors duration-300">Voir les photos</NuxtLink>
+            <layout-button href="/photographes/tatsuo-suzuki" color="white">
+              Voir les photos
+            </layout-button>
           </div>
 
         </div>

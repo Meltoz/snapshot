@@ -28,3 +28,7 @@
     --font-playfair: 'playfair';
     --font-kosugi: 'kosugi';
 }
+
+body::-webkit-scrollbar {
+    display: none;
+}
