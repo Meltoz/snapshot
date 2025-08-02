@@ -1,10 +1,11 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import {TextPlugin} from 'gsap/TextPlugin';
 import { CustomEase } from 'gsap/CustomEase';
 import { defineNuxtPlugin } from 'nuxt/app';
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, CustomEase);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, CustomEase, TextPlugin);
 gsap.config({ force3D: true });
 gsap.defaults({
   ease: 'none',

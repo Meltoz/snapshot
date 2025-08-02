@@ -1,14 +1,14 @@
 <template>
   <div
-    class="relative w-full h-full overflow-hidden bg-black text-white"
+    class="static xl:relative w-full h-full overflow-hidden bg-black text-white"
     @mouseenter="onEnter"
     @mouseleave="onLeave"
     @mousemove="onMove"
     @click="onClick"
     ref="container"
   >
-    <h2 class="text-[7rem] px-5 pt-10 font-playfair italic">Découvrir</h2>
-    <h3 class="text-[4rem] px-28 -pt-16 font-playfair italic">Nos photographes</h3>
+    <h2 class="text-5xl md:text-[7rem] px-5 pt-10 font-playfair italic">Découvrir</h2>
+    <h3 class="text-3xl md:text-[4rem] px-28 -pt-16 font-playfair italic">Nos photographes</h3>
     <!--    grille-->
     <div class="absolute top-1/3 left-0 w-full h-px bg-white"></div>
     <div class="absolute top-2/3 left-0 w-full h-px bg-white"></div>
@@ -28,7 +28,7 @@
     >
       <img :src="image.src" alt="" class="w-full h-full object-cover" />
     </div>
-    <NuxtLink to="photographes" class="absolute bottom-20 right-40 text-3xl border border-white px-16 py-2 font-kosugi hover:bg-white hover:text-black hover:border-black transition-colors duration-500 z-50">Voir plus</NuxtLink>
+    <NuxtLink to="photographes" class="static md:absolute text-center w-full md:w-fit mx-4 bottom-20 md:right-40 text-3xl border border-white md:px-16 py-2 font-kosugi hover:bg-white hover:text-black hover:border-black transition-colors duration-500 z-50">Voir plus</NuxtLink>
     <!-- Overlay : Image agrandie -->
     <div
       v-if="showImage"

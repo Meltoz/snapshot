@@ -6,10 +6,6 @@ import Product from '~/components/product/product.vue';
 import type { ProductProps } from '~/models/product';
 import Footer from '~/components/layout/footer.vue';
 
-useHead({
-  title: 'Snapshot - Fujifilm',
-});
-
 definePageMeta({
   pageTransition: transitionConfig,
 });
@@ -195,7 +191,7 @@ const products: ProductProps[] = [
   <main>
     <hero />
     <Product v-for="product in products" v-bind="product" class="screen-section h-screen" />
-    <discover class="w-full h-screen" />
+    <discover class="w-full h-fit md:h-screen" />
     <paralax />
     <Footer />
   </main>

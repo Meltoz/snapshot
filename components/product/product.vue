@@ -1,24 +1,24 @@
 <template>
-  <section class="mt-5 h-screen">
-    <p class="text-center text-2xl absolute w-full font-kosugi">[{{ year }}]</p>
-    <div class="flex justify-between font-playfair absolute">
+  <section class="my-40 md:mt-5 md:h-screen">
+    <p class="text-center text-2xl static md:absolute w-full font-kosugi">[{{ year }}]</p>
+    <div class="flex justify-between font-playfair static md:absolute pt-5 md:pt-0">
       <div class="space-y-6 ml-4">
         <p class="text-7xl">{{ brand }}</p>
         <p class="text-6xl italic">{{ model }}</p>
-        <div class="h-1 bg-red-500 w-1/12"></div>
-        <p class="w-3/12 font-kosugi text-justify text-md">{{ description }}</p>
+        <div class="h-1 bg-red-500 w-4/12 md:w-1/12"></div>
+        <p class="pr-5 md:w-3/12 font-kosugi text-justify text-md">{{ description }}</p>
       </div>
-      <p class="text-[1.6rem] basis-7/12">“{{ citation }}”</p>
+      <p class="text-[1.6rem] basis-7/12 md:block hidden">“{{ citation }}”</p>
     </div>
 
-    <div ref="container" class="relative w-full mx-auto py-24">
-      <img :src="img" alt="Image interactive" class="w-1/2 mx-auto h-auto object-cover" />
+    <div ref="container" class="static md:relative w-full mx-auto py-5  md:py-24">
+      <img :src="img" alt="Image interactive" class="md:w-1/2 mx-auto h-96 xl:h-auto object-cover" />
 
       <!-- Points -->
       <div
         v-for="(point, index) in points"
         :key="'point-' + index"
-        class="absolute z-10"
+        class="absolute z-10 md:block hidden"
         :style="{
           top: point.y + '%',
           left: point.x + '%',
@@ -53,6 +53,7 @@
         </div>
       </div>
     </div>
+    <p class="block md:hidden text-3xl font-playfair italic my-4 px-4">“{{ citation }}”</p>
   </section>
 </template>
 

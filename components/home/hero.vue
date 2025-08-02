@@ -26,7 +26,7 @@
           <img src="/images/hero/boitier.jpg" class="h-52"/>
           <div class="h-[40px] w-[270px] bg-red-500/80 absolute -left-16 -bottom-5"></div>
         </div>
-        <div class="border-2 border-red-500 space-y-6  px-5 xl:px-10 py-2 xl:py-14">
+        <div class="border-2 border-red-500 space-y-6 px-5 mx-4 xl:px-10 py-2 xl:py-14">
           <h3 class="text-center">[1948]</h3>
           <p class=" text-justify">
             Fujifilm lance son premier appareil photo, le Fujica Six, un appareil moyen format

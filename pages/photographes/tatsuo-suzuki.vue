@@ -1,6 +1,10 @@
 <script setup lang="ts">
  import type { Card } from '~/models/card';
+ import transitionConfig from '~/helpers/transition-config';
 
+ definePageMeta({
+   pageTransition: transitionConfig,
+ });
  const cards: Card[] = [{
   img:'/images/photographes/tatuso/img1.png',
    description: 'A girl at the theater ticker counter, Shibuya, Tokyo (2013)'

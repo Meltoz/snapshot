@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import type { Card } from '~/models/card';
+import transitionConfig from '~/helpers/transition-config';
+
+definePageMeta({
+  pageTransition: transitionConfig,
+});
 
 const cards: Card[] = [{
   img:'/images/photographes/walter/img1.png',
