@@ -84,7 +84,7 @@ const link = [
       </div>
     </section>
 
-    <div class="flex justify-between py-5 hidden md:block">
+    <div class="justify-between py-5 hidden md:flex">
       <p class="basis-2/12"><span class="opacity-65">&copy;</span> Snapshot 2025</p>
       <div class="flex justify-between basis-8/12">
         <p
