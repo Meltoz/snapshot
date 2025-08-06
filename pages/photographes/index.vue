@@ -33,14 +33,14 @@ definePageMeta({
 
           <p class="font-kosugi text-justify">Walter Iooss Jr. est un photographe américain renommé pour son travail dans le domaine du sport. Il a photographié de nombreuses icônes telles que Michael Jordan, Muhammad Ali ou Serena Williams.</p>
           <div class="md:block hidden">
-            <layout-button href="photographes/walter-ioos" color="white">
+            <layout-button href="/photographes/walter-ioos" color="white">
               Voir les photos
             </layout-button>
           </div>
 
         </div>
         <img src="/images/photographes/walter.jpg" class="mx-4 md:mx-0" />
-        <NuxtLink to="photographes/walter-ioos" class="md:hidden block mt-5 text-center bg-white  py-2 mx-4 text-black border border-black">Voir les photos</NuxtLink>
+        <NuxtLink to="/photographes/walter-ioos" class="md:hidden block mt-5 text-center bg-white  py-2 mx-4 text-black border border-black">Voir les photos</NuxtLink>
       </div>
     </div>
   </div>

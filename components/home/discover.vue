@@ -29,7 +29,7 @@
     >
       <img :src="image.src" alt="" class="w-full h-full object-cover" />
     </div>
-    <div class="absolute bottom-10 right-20 z-50 my-5 mx-4">
+    <div class="absolute bottom-10 right-20 z-40 my-5 mx-4">
       <layout-button href="/photographes" color="black">
         Voir plus
       </layout-button>
